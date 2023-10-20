@@ -1,23 +1,19 @@
-start = "0"
-end = ["9"]
-symbols = ["a", "b"]
-states = [str(i) for i in range(10)]
-move = [
-        ["0",None,"1"],
-        ["0",None,"7"],
-        ["1",None,"2"],
-        ["1",None,"4"],
-        ["2","a","3"],
-        ["3",None,"6"],
-        ["6", None, "1"],
-        ["4","b","5"],
-        ["5",None,"6"],
-        ["6",None,"7"],
-        ["7","a","8"],
-        ["8","b","9"],
-        ["9",None,"6"]
-    ]
 from dfa import DFA
 
-dfa = DFA(start, end, states, symbols, move)
-dfa.print()
+start = "S0"
+end = ['S4']
+symbols = ["a", "b"]
+states = ['S0', "S1", "S2", "S3", "S4"]
+move = [['S0', 'a', 'S1'], ['S1', 'b', 'S1'], ['S2', 'b', 'S2'],
+        ['S3', 'b', 'S3'], ['S1', None, 'S2'], ['S2', None, 'S3'], ['S3', 'b', 'S4']]
+dfa1 = DFA(start, end, states, symbols, move)
+
+start = "S0"
+end = ['S3']
+symbols = ["a", "b"]
+states = ['S0', "S1", "S2", "S3"]
+move = [['S0', 'a', 'S0'], ['S1', 'b', 'S1'], ['S2', 'b', 'S2'],
+        ['S0', None, 'S1'], ['S1', None, 'S2'], ['S2', 'b', 'S3']]
+dfa2 = DFA(start, end, states, symbols, move)
+
+print(dfa1 == dfa2)
